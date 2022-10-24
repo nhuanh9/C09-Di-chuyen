@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--Clean code: mã sạch-->
+<!--camelCase: conLacDa-->
+
+
+<!--Tên biến: danh từ, camelCase, có nghĩa-->
+<!--Tên hàm: động từ, camelCase, có nghĩa-->
+
+<script>
+    function insertNumberToArray(array, number, index) {
+        let newArray = [];
+        if (index > 0 && index < array.length) {
+            for (let i = 0; i < index; i++) {
+                 newArray.push(array[i])
+            }
+            newArray[index] = number;
+            for (let i = index; i < array.length; i++) {
+                newArray.push(array[i])
+            }
+        }
+        return newArray;
+    }
+
+    alert(insertNumberToArray([1, 2, 3], 10, 1));
+</script>
+</body>
+</html>
