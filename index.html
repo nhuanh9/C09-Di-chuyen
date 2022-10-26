@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="myCanvas" width="500px" height="500px" style="border: 1px solid"></canvas>
+<!--
+Tạo 1 lớp: HCN (x, y, width, height, color), draw(): vẽ hcn lên canvas
+-->
+<script>
+    class HCN {
+        constructor(x, y, width, height, color) {
+            this.x = x;
+            this.y = y;
+            this.width = width;
+            this.height = height;
+            this.color = color;
+        }
+
+        draw() {
+            let ctx = document.getElementById('myCanvas').getContext('2d');
+            ctx.clearRect(0, 0, 500, 500)
+            ctx.fillStyle = this.color;
+            ctx.fillRect(this.x, this.y, this.width, this.height);
+        }
+
+        moveRight() {
+            this.x += 10;
+            this.draw()
+        }
+
+        moveLeft() {
+            this.x -= 10;
+            this.draw()
+        }
+
+        moveUp() {
+            this.y -= 10;
+            this.draw()
+        }
+
+        moveDown() {
+            this.y += 10;
+            this.draw()
+        }
+    }
+
+    let hcn = new HCN(0, 250, 100, 100, 'yellow');
+    hcn.draw()
+    window.addEventListener('keydown', (e) => {
+        if (e.code == 'ArrowDown') {
+            hcn.moveDown()
+        } if (e.code == 'ArrowUp') {
+            hcn.moveUp()
+        } if (e.code == 'ArrowLeft') {
+            hcn.moveLeft()
+        } if (e.code == 'ArrowRight') {
+            hcn.moveRight()
+        }
+    })
+</script>
+</body>
+</html>
