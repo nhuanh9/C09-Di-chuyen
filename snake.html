@@ -17,6 +17,8 @@ Tạo 1 lớp: HCN (x, y, width, height, color), draw(): vẽ hcn lên canvas
             this.width = width;
             this.height = height;
             this.color = color;
+            this.speedX = 10;
+            this.speedY = 0;
         }
 
         draw() {
@@ -26,39 +28,56 @@ Tạo 1 lớp: HCN (x, y, width, height, color), draw(): vẽ hcn lên canvas
             ctx.fillRect(this.x, this.y, this.width, this.height);
         }
 
-        moveRight() {
-            this.x += 10;
-            this.draw()
-        }
-
-        moveLeft() {
-            this.x -= 10;
-            this.draw()
-        }
-
-        moveUp() {
-            this.y -= 10;
-        }
-
-        moveDown() {
-            this.y += 10;
+        move() {
+            this.x += this.speedX;
+            this.y += this.speedY;
             this.draw()
         }
     }
 
     let hcn = new HCN(0, 250, 50, 50, 'yellow');
-    hcn.draw()
+    setInterval(()=> {
+        hcn.move();
+        hcn.draw()
+    }, 10)
     window.addEventListener('keydown', (e) => {
         if (e.code == 'ArrowDown') {
-            hcn.moveDown()
+            hcn.speedX = 0;
+            hcn.speedY = 10;
         } if (e.code == 'ArrowUp') {
-            hcn.moveUp()
+            hcn.speedX = 0;
+            hcn.speedY = -10;
         } if (e.code == 'ArrowLeft') {
-            hcn.moveLeft()
+            hcn.speedX = -10;
+            hcn.speedY = 0;
         } if (e.code == 'ArrowRight') {
-            hcn.moveRight()
+            hcn.speedX = 10;
+            hcn.speedY = 0;
         }
     })
 </script>
 </body>
 </html>
+
+<!--
+Quản lý: 1
+Đuổi hình bắt chữ: 2
+Ai là triệu phú: 3
+Đi tìm kho báu: 4
+Oto: 5
+Máy bay lên thẳng (khủng long): 6
+Bắn máy bay: 7
+3 Cây: 4
+Lô đề: 2
+Cờ caro:8
+Cờ vua: 9
+Hứng bia: 5
+Boom: 7
+Tank: 8
+Xếp hình: 7
+Bouncing Ball: 4
+Pikachu: 7
+
+
+-->
+

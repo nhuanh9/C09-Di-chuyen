@@ -5,60 +5,57 @@
     <title>Title</title>
 </head>
 <body>
-<canvas id="myCanvas" width="1000px" height="500px" style="border: 1px solid"></canvas>
+<canvas id="myCanvas" width="500px" height="500px" style="border: 1px solid"></canvas>
 <!--
 Tạo 1 lớp: HCN (x, y, width, height, color), draw(): vẽ hcn lên canvas
 -->
 <script>
     class HCN {
-        constructor(x, y, width, height, color) {
+        constructor(x, y, width, height, color, speed) {
             this.x = x;
             this.y = y;
             this.width = width;
             this.height = height;
             this.color = color;
+            this.speedX = speed;
+            this.speedY = speed;
         }
 
         draw() {
             let ctx = document.getElementById('myCanvas').getContext('2d');
-            ctx.clearRect(0, 0, 1000, 500)
+            ctx.clearRect(0, 0, 500, 500)
             ctx.fillStyle = this.color;
             ctx.fillRect(this.x, this.y, this.width, this.height);
         }
 
         moveRight() {
-            this.x += 10;
+            this.x += this.speedX;
             this.draw()
         }
 
         moveLeft() {
-            this.x -= 10;
+            this.x -= this.speedX;
             this.draw()
         }
 
         moveUp() {
-            this.y -= 10;
+            this.y -= this.speedY;
         }
 
         moveDown() {
-            this.y += 10;
+            this.y += this.speedY;
             this.draw()
         }
     }
 
-    let hcn = new HCN(0, 250, 50, 50, 'yellow');
+    let hcn = new HCN(0, 250, 100, 100, 'yellow', 10);
     hcn.draw()
-    window.addEventListener('keydown', (e) => {
-        if (e.code == 'ArrowDown') {
-            hcn.moveDown()
-        } if (e.code == 'ArrowUp') {
-            hcn.moveUp()
-        } if (e.code == 'ArrowLeft') {
-            hcn.moveLeft()
-        } if (e.code == 'ArrowRight') {
-            hcn.moveRight()
+    setInterval(() => {
+        hcn.moveRight();
+        if (hcn.x >= 500 - hcn.width || hcn.x <= 0) {
+            hcn.speedX = - hcn.speedX
         }
-    })
+    }, 10)
 </script>
 </body>
 </html>
